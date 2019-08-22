@@ -1,25 +1,39 @@
 package com.example.demo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Car {
-    @NotNull
-    @Min(1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotNull
-    @Size(min=3, max=20)
-    private String name;
+    @Min(1)
+    private int year;
 
     @NotNull
-    @Size(min=3, max=10)
-    private String type;
+    @Size(min = 1)
+    private String make;
 
     @NotNull
-    @Size(min=10, max=30)
-    private String description;
+    @Size(min = 1)
+    private String model;
+
+    public Car(@NotNull @Min(1) int year, @NotNull @Size(min = 1) String make, @NotNull @Size(min = 1) String model) {
+        this.year = year;
+        this.make = make;
+        this.model = model;
+    }
+
+    public Car() {
+    }
 
     public long getId() {
         return id;
@@ -29,27 +43,27 @@ public class Car {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getYear() {
+        return year;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public String getType() {
-        return type;
+    public String getMake() {
+        return make;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMake(String make) {
+        this.make = make;
     }
 
-    public String getDescription() {
-        return description;
+    public String getModel() {
+        return model;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setModel(String model) {
+        this.model = model;
     }
 }
